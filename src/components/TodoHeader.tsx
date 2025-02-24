@@ -6,7 +6,6 @@ import { USER_ID } from '../api/todos';
 type Props = {
   todos: Todo[];
   onSubmit: (todo: Todo) => Promise<void>;
-  // errorMessage: string;
   validation: (error: string) => void;
   isLoading: boolean;
 };
@@ -24,10 +23,9 @@ export const TodoHeader: React.FC<Props> = ({
 
   useEffect(() => {
     if (titleRef.current && !isLoading) {
-      titleRef.current.focus()
+      titleRef.current.focus();
     }
-
-  }, [isLoading])
+  }, [isLoading]);
 
   const areAllTodosCompleted = (checkTodos: Todo[]) => {
     return checkTodos.every(todo => todo.completed);
@@ -35,13 +33,14 @@ export const TodoHeader: React.FC<Props> = ({
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
-  }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!title.trim()) {
       validation('Title should not be empty');
+
       return;
     }
 
@@ -53,15 +52,15 @@ export const TodoHeader: React.FC<Props> = ({
       title: title.trim(),
       userId: USER_ID,
     })
-    .then(reset)
-    .finally(() => setIsSubmitting(false))
-  }
+      .then(reset)
+      .finally(() => setIsSubmitting(false));
+  };
 
   const reset = () => {
     setTitle('');
 
     validation('');
-  }
+  };
 
   return (
     <header className="todoapp__header">
@@ -75,9 +74,7 @@ export const TodoHeader: React.FC<Props> = ({
       />
 
       {/* Add a todo on form submit */}
-      <form
-        onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <input
           ref={titleRef}
           data-cy="NewTodoField"

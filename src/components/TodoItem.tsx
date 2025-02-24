@@ -1,11 +1,11 @@
-import { Todo } from "../types/Todo"
-import cn from 'classnames'
+import { Todo } from '../types/Todo';
+import cn from 'classnames';
 
 type Props = {
   onDelete: (todoId: number) => void;
   todo: Todo;
   isLoading: boolean;
-}
+};
 
 export const TodoItem: React.FC<Props> = ({ todo, onDelete, isLoading }) => {
   return (
@@ -41,12 +41,12 @@ export const TodoItem: React.FC<Props> = ({ todo, onDelete, isLoading }) => {
       <div
         data-cy="TodoLoader"
         className={cn('modal overlay', {
-          'is-active': isLoading || todo.isDeleting
+          'is-active': isLoading || todo.isDeleting,
         })}
       >
         <div className="modal-background has-background-white-ter" />
         <div className="loader" />
       </div>
     </div>
-  )
-}
+  );
+};

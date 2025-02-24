@@ -1,6 +1,5 @@
-import cn from 'classnames';
 import { Todo } from '../types/Todo';
-import { TodoItem } from './TodoItem'
+import { TodoItem } from './TodoItem';
 
 type Props = {
   todos: Todo[];
@@ -15,26 +14,16 @@ export const TodoList: React.FC<Props> = ({
   tempTodo,
   isLoading,
 }) => {
-  
   return (
     <section className="todoapp__main" data-cy="TodoList">
       {/* This is a completed todo */}
       {todos.map(todo => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          onDelete={onDelete}
-        />
+        <TodoItem key={todo.id} todo={todo} onDelete={onDelete} />
       ))}
 
       {tempTodo && (
-        <TodoItem
-          todo={tempTodo}
-          onDelete={onDelete}
-          isLoading={isLoading}
-        />
+        <TodoItem todo={tempTodo} onDelete={onDelete} isLoading={isLoading} />
       )}
-
     </section>
   );
 };
