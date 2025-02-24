@@ -25,10 +25,6 @@ export const App: React.FC = () => {
     }
   }, [errorMessage]);
 
-  useEffect(() => {
-    loadTodos();
-  }, []);
-
   function loadTodos() {
     setErrorMessage('');
     setLoading(true);
@@ -39,6 +35,10 @@ export const App: React.FC = () => {
       .catch(() => setErrorMessage('Unable to load todos'))
       .finally(() => setLoading(false));
   }
+
+  useEffect(() => {
+    loadTodos();
+  }, []);
 
   const addTodo = ({ title, completed, userId }: Todo) => {
     setErrorMessage('');
@@ -55,8 +55,8 @@ export const App: React.FC = () => {
 
     return todoService
       .createTodo({ title, completed, userId })
-      .then(newTodo => {
-        setTodos(currentTodos => [...currentTodos, newTodo]);
+      .then(newOneTodo => {
+        setTodos(currentTodos => [...currentTodos, newOneTodo]);
       })
       .catch(error => {
         setErrorMessage('Unable to add a todo');

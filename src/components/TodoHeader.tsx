@@ -35,6 +35,12 @@ export const TodoHeader: React.FC<Props> = ({
     setTitle(e.target.value);
   };
 
+  const reset = () => {
+    setTitle('');
+
+    validation('');
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -54,12 +60,6 @@ export const TodoHeader: React.FC<Props> = ({
     })
       .then(reset)
       .finally(() => setIsSubmitting(false));
-  };
-
-  const reset = () => {
-    setTitle('');
-
-    validation('');
   };
 
   return (
