@@ -4,7 +4,7 @@ import cn from 'classnames';
 type Props = {
   onDelete: (todoId: number) => void;
   todo: Todo;
-  isLoading: boolean;
+  isLoading?: boolean;
 };
 
 export const TodoItem: React.FC<Props> = ({ todo, onDelete, isLoading }) => {
